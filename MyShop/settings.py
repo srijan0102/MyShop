@@ -67,7 +67,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
-                'cart.context_processors.cart',
+                'cart.context_processors.cart',  # cart context processor
             ],
         },
     },
@@ -132,8 +132,31 @@ MEDIA_ROOT = os.path.join(BASE_DIR, 'media/')
 CART_SESSION_ID = 'cart'
 
 # django-paypal settings
-PAYPAL_REVIVER_EMAIL = 'your_paypal_email_id@gmail.com'
+PAYPAL_REVIVER_EMAIL = 'srijankr.srijan@outlook.com',
 PAYPAL_TEST = True
+
+# Braintree Payment
+BRAINTREE_MERCHANT_ID = 'cryggg6sw7p5g4cj'
+BRAINTREE_PUBLIC_KEY = '9mn4jmntcqdwvv99'
+BRAINTREE_PRIVATE_KEY = 'bbf19f482ff05ae8dd07281fa32a73eb'
+
+from braintree import Configuration, Environment
+Configuration.configure(
+    Environment.Sandbox,
+    BRAINTREE_MERCHANT_ID,
+    BRAINTREE_PRIVATE_KEY,
+    BRAINTREE_PUBLIC_KEY
+)
+
+# Email SMTP Server Configuration
+# To Run SMTP server type $python -m smtpd -n -c DebuggingServer localhost:1025
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'localhost'
+EMAIL_HOST_USER = ''
+EMAIL_HOST_PASSWORD = ''
+EMAIL_PORT = 1025
+EMAIL_USE_TLS = False
+
 
 # KeyPoints
 # U/adminsrijan/ p/adminpass
